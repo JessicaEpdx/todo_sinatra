@@ -29,7 +29,20 @@ get("/lists") do
   erb(:lists)
 end
 
-get("list/:id") do
-  @list = List.find('id').name
+get("/list/:id") do
+  @list = List.find(params.fetch('id').to_i)
+  erb(:list)
+end
+
+post('/tasks') do
+  task = params.fetch("task")
+  id = params.fetch("list_id").to_i
+  new_task = Task.new({:description => task, :list_id => id})
+  new_task.save()
+  @list = List.find(id)
+  erb(:task_success)
+end
+
+get('/tasks') do
   erb(:list)
 end

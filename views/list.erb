@@ -1,1 +1,15 @@
-<h1>Here are the tasks for your list <%= @list%></h1>
+<h1>Here are the tasks for your list <%= @list.name %> </h1>
+<ul>
+  <% @list.tasks.each do |task| %>
+  <li><%= task.description() %></li>
+  <% end %>
+</ul>
+
+<form action="/tasks" method="post">
+  <input id="list_id" name="list_id" type="hidden" value="<%= @list.id()%>">
+
+
+  <label for="task">Add your new task here:</label>
+  <input id="task" name = "task" type="text">
+  <button type="submit">Add Task</button>
+</form>
