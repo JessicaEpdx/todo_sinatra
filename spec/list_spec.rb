@@ -30,4 +30,11 @@ describe(List) do
     end
   end
 
+  describe(".find") do
+    it("finds a list by id") do
+      list = List.new({:name => "Epicodus", :id => nil})
+      list.save()
+      expect(List.find(list.id())).to(eq(list))
+    end
+  end
 end

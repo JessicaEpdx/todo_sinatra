@@ -1,1 +1,8 @@
 <h1>Here are your lists:</h1>
+
+<ul>
+  <% @lists.each() do |list| %>
+  <li><a href="/list/<%= list.id.to_i%>"><%= list.name%></a>
+  </li>
+  <% end %>
+</ul>

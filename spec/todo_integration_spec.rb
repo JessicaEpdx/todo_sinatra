@@ -1,5 +1,6 @@
 require('capybara/rspec')
 require('./app')
+require('spec_helper')
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 
@@ -10,5 +11,14 @@ describe('adding a new list', {:type => :feature}) do
     fill_in('name', :with => 'Epicodus Work')
     click_button('Add List')
     expect(page).to have_content('Success!')
+  end
+end
+
+describe('list out lists', {:type => :feature}) do
+  it('allows user to see all lists') do
+    test_list = List.new({:name => "School Work", :id => nil})
+    test_list.save()
+    visit('/lists')
+    expect(page).to have_content(test_list.name())
   end
 end

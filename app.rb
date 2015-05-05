@@ -28,3 +28,8 @@ get("/lists") do
   @lists = List.all()
   erb(:lists)
 end
+
+get("list/:id") do
+  @list = List.find('id').name
+  erb(:list)
+end
